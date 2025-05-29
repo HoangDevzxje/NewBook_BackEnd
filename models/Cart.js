@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const { use } = require('../routes/authRoute');
+// const { use } = require('../routes/authRoute');
 
 const cartSchema = new mongoose.Schema({
     user: {
@@ -20,6 +20,6 @@ const cartSchema = new mongoose.Schema({
             }
         }
     ]
-}, {timestamps: false});
+}, { timestamps: false });
 
 module.exports = mongoose.model('Cart', cartSchema);

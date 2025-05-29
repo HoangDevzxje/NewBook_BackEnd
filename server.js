@@ -2,18 +2,18 @@
 require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
-const authRoutes = require("./routes/authRoute");
-const userRoutes = require("./routes/userRoute");
-const cartRoutes = require("./routes/cartRoute");
-const bookRoutes = require("./routes/bookRoute");
-const adminRoutes = require("./routes/adminRoute");
-const categoryRoutes = require("./routes/categoryRoute");
-const orderRoutes = require("./routes/orderRoute");
-const ghnRoutes = require("./routes/ghnRoute");
-const paymentRoutes = require("./routes/paymentRoute");
-const { checkAuthorize } = require("./middleware/authMiddleware");
-const reviewRoutes = require("./routes/reviewRoute");
-const discountRoutes = require("./routes/discountRoute");
+// const authRoutes = require("./routes/authRoute");
+// const userRoutes = require("./routes/userRoute");
+// const cartRoutes = require("./routes/cartRoute");
+// const bookRoutes = require("./routes/bookRoute");
+// const adminRoutes = require("./routes/adminRoute");
+// const categoryRoutes = require("./routes/categoryRoute");
+// const orderRoutes = require("./routes/orderRoute");
+// const ghnRoutes = require("./routes/ghnRoute");
+// const paymentRoutes = require("./routes/paymentRoute");
+// const { checkAuthorize } = require("./middleware/authMiddleware");
+// const reviewRoutes = require("./routes/reviewRoute");
+// const discountRoutes = require("./routes/discountRoute");
 
 const DB = require("./config/db");
 
@@ -25,28 +25,28 @@ app.use(cors());
 app.use(express.json());
 
 // Routes
-app.use("/auth", authRoutes);
-app.use("/user", userRoutes);
-app.use("/cart", cartRoutes);
-app.use("/admin", adminRoutes);
-app.use("/book", bookRoutes);
-app.use("/category", categoryRoutes);
-app.use("/order", orderRoutes);
-app.use("/reviews", reviewRoutes);
-app.use("/ghn", ghnRoutes);
-app.use("/payment", paymentRoutes);
-app.use("/discount", discountRoutes);
+// app.use("/auth", authRoutes);
+// app.use("/user", userRoutes);
+// app.use("/cart", cartRoutes);
+// app.use("/admin", adminRoutes);
+// app.use("/book", bookRoutes);
+// app.use("/category", categoryRoutes);
+// app.use("/order", orderRoutes);
+// app.use("/reviews", reviewRoutes);
+// app.use("/ghn", ghnRoutes);
+// app.use("/payment", paymentRoutes);
+// app.use("/discount", discountRoutes);
 
-// Test phân quyền
-app.get("/open", (req, res) => {
-    res.status(200).json({ message: "Đây là API công khai." });
-});
-app.get("/admin-only", checkAuthorize(["admin"]), (req, res) => {
-    res.status(200).json({ message: "Chào Admin!" });
-});
-app.get("/user-or-admin", checkAuthorize(["user", "admin"]), (req, res) => {
-    res.status(200).json({ message: "Chào User hoặc Admin!" });
-});
+// // Test phân quyền
+// app.get("/open", (req, res) => {
+//     res.status(200).json({ message: "Đây là API công khai." });
+// });
+// app.get("/admin-only", checkAuthorize(["admin"]), (req, res) => {
+//     res.status(200).json({ message: "Chào Admin!" });
+// });
+// app.get("/user-or-admin", checkAuthorize(["user", "admin"]), (req, res) => {
+//     res.status(200).json({ message: "Chào User hoặc Admin!" });
+// });
 
 // Start server
 app.listen(port, () => {
