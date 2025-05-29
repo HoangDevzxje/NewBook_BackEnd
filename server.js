@@ -2,7 +2,7 @@
 require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
-// const authRoutes = require("./routes/authRoute");
+const authRoutes = require("./routes/authRoute");
 // const userRoutes = require("./routes/userRoute");
 // const cartRoutes = require("./routes/cartRoute");
 // const bookRoutes = require("./routes/bookRoute");
@@ -25,7 +25,7 @@ app.use(cors());
 app.use(express.json());
 
 // Routes
-// app.use("/auth", authRoutes);
+app.use("/auth", authRoutes);
 // app.use("/user", userRoutes);
 // app.use("/cart", cartRoutes);
 // app.use("/admin", adminRoutes);
