@@ -23,7 +23,9 @@ const userSchema = new mongoose.Schema({
   isActivated: {
     type: Boolean,
     default: true
-  }
+  },
+  accessToken: { type: String, default: null },
+  refreshToken: { type: String, default: null }
 }, { timestamps: true });
 
 module.exports = mongoose.model('User', userSchema);
