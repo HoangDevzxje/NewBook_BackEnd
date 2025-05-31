@@ -75,6 +75,67 @@ router.post("/verify-otp", authController.verifyOtp);
 router.post("/register", authController.register);
 
 // Đăng nhập
+/**
+ * @swagger
+ * /auth/login:
+ *   post:
+ *     summary: Đăng nhập tài khoản
+ *     description: Đăng nhập bằng email và mật khẩu.
+ *     tags:
+ *       - Auth
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - email
+ *               - password
+ *             properties:
+ *               email:
+ *                 type: string
+ *                 format: email
+ *                 example: "test@gmail.com"
+ *               password:
+ *                 type: string
+ *                 format: password
+ *                 example: "Abc@123456"
+ *     responses:
+ *       200:
+ *         description: Đăng nhập thành công
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: Đăng nhập thành công!
+ *                 token:
+ *                   type: string
+ *                   example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+ *       400:
+ *         description: Dữ liệu không hợp lệ
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: Email hoặc mật khẩu không đúng!
+ *       500:
+ *         description: Lỗi hệ thống
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: Lỗi hệ thống!
+ */
 router.post("/login", authController.login);
 
 // Rest mật khẩu
