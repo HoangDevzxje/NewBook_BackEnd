@@ -2,41 +2,41 @@
 require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
-// const authRoutes = require("./routes/authRoute");
-// const userRoutes = require("./routes/userRoute");
-// const cartRoutes = require("./routes/cartRoute");
-// const bookRoutes = require("./routes/bookRoute");
-// const adminRoutes = require("./routes/adminRoute");
-// const categoryRoutes = require("./routes/categoryRoute");
-// const orderRoutes = require("./routes/orderRoute");
-// const ghnRoutes = require("./routes/ghnRoute");
-// const paymentRoutes = require("./routes/paymentRoute");
-// const { checkAuthorize } = require("./middleware/authMiddleware");
-// const reviewRoutes = require("./routes/reviewRoute");
-// const discountRoutes = require("./routes/discountRoute");
+const routes = require('./routes');
+
+// Import Swagger
+const swaggerJsDoc = require("swagger-jsdoc");
+const swaggerUi = require("swagger-ui-express");
 
 const DB = require("./config/db");
 
 const app = express();
 const port = process.env.PORT || 9999;
 
+const swaggerOptions = {
+    definition: {
+        openapi: "3.0.0",
+        info: {
+            title: "NewBook API",
+            version: "1.0.0",
+            description: "API web bán sách"
+        },
+        servers: [
+            {
+                url: "http://localhost:9999"
+            }
+        ]
+    },
+    apis: ["./routes/*.js"]
+};
+const swaggerDocs = swaggerJsDoc(swaggerOptions);
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 // Middleware
 app.use(cors());
 app.use(express.json());
 
 // Routes
-// app.use("/auth", authRoutes);
-// app.use("/user", userRoutes);
-// app.use("/cart", cartRoutes);
-// app.use("/admin", adminRoutes);
-// app.use("/book", bookRoutes);
-// app.use("/category", categoryRoutes);
-// app.use("/order", orderRoutes);
-// app.use("/reviews", reviewRoutes);
-// app.use("/ghn", ghnRoutes);
-// app.use("/payment", paymentRoutes);
-// app.use("/discount", discountRoutes);
-
+routes(app);
 // // Test phân quyền
 // app.get("/open", (req, res) => {
 //     res.status(200).json({ message: "Đây là API công khai." });
